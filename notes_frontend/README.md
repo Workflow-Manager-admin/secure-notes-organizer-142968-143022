@@ -26,8 +26,12 @@ Inside of your Astro project, you'll see the following folders and files:
 Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
 There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
 Any static assets, like images, can be placed in the `public/` directory.
+
+**Logo Usage**:
+- The logo shown in the app header must be located at `public/logo.jpeg`.
+- Replace `public/logo.jpeg` with your own logo image for rebranding.
+- If the logo is ever missing or broken, a placeholder will be shown to avoid a broken image experience.
 
 ## 🧞 Commands
 
