@@ -36,27 +36,26 @@ import ThemeToggle from '../components/ThemeToggle.astro';
 
 <style>
 	:root {
-		/* Black-and-white variables */
-		--bg-color: #fff;
-		--text-color: #111;
-		--text-secondary: #444;
-		--border-color: #bbb;
-		--card-bg: #fff;
-		--card-hover-bg: #efefef;
-		--shadow-color: #bbb2;
-		--shadow-hover-color: #bbb4;
+		/* Notepad-inspired themed variables */
+		--bg-color: #fcf7ed;
+		--text-color: #444;
+		--text-secondary: #6d542b;
+		--border-color: #b19c74;
+		--card-bg: #f8f4e3;
+		--card-hover-bg: #ecdfbb;
+		--shadow-color: #b19c7477;
+		--shadow-hover-color: #ddb97088;
 	}
-
 	body.dark-theme {
-		/* Inverted for black/white */
-		--bg-color: #111;
-		--text-color: #fff;
-		--text-secondary: #ccc;
-		--border-color: #444;
-		--card-bg: #1a1a1a;
-		--card-hover-bg: #222;
-		--shadow-color: #222b;
-		--shadow-hover-color: #444b;
+		/* Muted/tanned for dark mode (for a cozy look) */
+		--bg-color: #271e13;
+		--text-color: #f4eed6;
+		--text-secondary: #e6ca9d;
+		--border-color: #927a43;
+		--card-bg: #27200d;
+		--card-hover-bg: #3f2f1a;
+		--shadow-color: #59472455;
+		--shadow-hover-color: #bcae8c22;
 	}
 
 	html,
@@ -67,8 +66,11 @@ import ThemeToggle from '../components/ThemeToggle.astro';
 		background-color: var(--bg-color);
 		color: var(--text-color);
 		transition: background-color 0.3s, color 0.3s;
+		font-family: 'Special Elite', 'Courier New', Courier, monospace, 'Helvetica Neue', Arial, sans-serif;
+		background-image: 
+			repeating-linear-gradient(120deg, #f8f4e3 0px, #f1edd9 70vw),
+			radial-gradient(ellipse 120vw 120vw at 28vw 12vh, #ede6d4 36%, transparent 100%);
 	}
-
 	.main-logo-header {
 		width: 100%;
 		display: flex;
@@ -78,29 +80,26 @@ import ThemeToggle from '../components/ThemeToggle.astro';
 		padding-bottom: 8px;
 		background: none;
 	}
-
 	.app-logo {
 		display: block;
 		margin: 0 auto 0.25rem auto;
 		border-radius: 18px;
 		border: 2.5px solid var(--border-color);
-		background: #fff;
-		box-shadow: 0 2px 12px #1111;
+		background: #fff8e1;
+		box-shadow: 0 2px 14px 2px #9c84632a;
 		object-fit: contain;
 		width: 64px;
 		height: 64px;
 		max-width: 96vw;
-		filter: grayscale(90%) contrast(1.07) brightness(0.98);
-		transition: filter 0.2s cubic-bezier(.68,-0.55,.27,1.55);
+		filter: sepia(0.1) contrast(1.04) brightness(1.09) drop-shadow(0 0 2px #f6e7d2a5);
+		transition: filter 0.2s cubic-bezier(.68,-0.55,.27,1.55), border-color 0.33s, background 0.3s;
 	}
-
 	body.dark-theme .app-logo {
-		background: #222;
-		border-color: #444;
-		filter: grayscale(90%) brightness(1.02) contrast(1.18);
-		box-shadow: 0 3px 18px #0005;
+		background: #39312a;
+		border-color: #927a43;
+		filter: sepia(0.10) brightness(1.11) contrast(1.11) drop-shadow(0 5px 8px #241c116a);
+		box-shadow: 0 3px 18px #332a218a;
 	}
-
 	@media (max-width: 440px) {
 		.main-logo-header { padding-top: 7vw; }
 		.app-logo { width: 42px; height: 42px; border-radius: 11px; }
