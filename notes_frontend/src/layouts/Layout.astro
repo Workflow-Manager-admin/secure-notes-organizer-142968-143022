@@ -13,6 +13,22 @@ import ThemeToggle from '../components/ThemeToggle.astro';
 	</head>
 	<body>
 		<ThemeToggle />
+
+		<!-- App Logo (integrated for b/w theme at top center + responsive) -->
+		<header class="main-logo-header">
+			<a href="/" tabindex="-1" aria-label="Homepage">
+				<img
+					src="/logo.jpeg"
+					alt="Notepad App Logo"
+					class="app-logo"
+					width="60"
+					height="60"
+					decoding="async"
+					fetchpriority="high"
+				/>
+			</a>
+		</header>
+
 		<slot />
 	</body>
 </html>
@@ -50,5 +66,42 @@ import ThemeToggle from '../components/ThemeToggle.astro';
 		background-color: var(--bg-color);
 		color: var(--text-color);
 		transition: background-color 0.3s, color 0.3s;
+	}
+
+	.main-logo-header {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		padding-top: 18px;
+		padding-bottom: 8px;
+		background: none;
+	}
+
+	.app-logo {
+		display: block;
+		margin: 0 auto 0.25rem auto;
+		border-radius: 18px;
+		border: 2.5px solid var(--border-color);
+		background: #fff;
+		box-shadow: 0 2px 12px #1111;
+		object-fit: contain;
+		width: 64px;
+		height: 64px;
+		max-width: 96vw;
+		filter: grayscale(90%) contrast(1.07) brightness(0.98);
+		transition: filter 0.2s cubic-bezier(.68,-0.55,.27,1.55);
+	}
+
+	body.dark-theme .app-logo {
+		background: #222;
+		border-color: #444;
+		filter: grayscale(90%) brightness(1.02) contrast(1.18);
+		box-shadow: 0 3px 18px #0005;
+	}
+
+	@media (max-width: 440px) {
+		.main-logo-header { padding-top: 7vw; }
+		.app-logo { width: 42px; height: 42px; border-radius: 11px; }
 	}
 </style>
