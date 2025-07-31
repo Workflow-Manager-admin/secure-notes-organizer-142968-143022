@@ -1,11 +1,37 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import Notepad from '../components/Notepad.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+/**
+ * App index page - using Notepad UI
+ */
 ---
-
 <Layout>
-	<Welcome />
+  <Notepad>
+    <textarea
+      aria-label="Type your note here"
+      rows="11"
+      style="
+        width: 100%;
+        min-height: 320px;
+        font-family: 'Special Elite', 'Courier New', Courier, monospace;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: #444;
+        font-size: 16px;
+        line-height: 1.85;
+        resize: none;
+        z-index: 2;
+      "
+      placeholder="Write your notes here..."
+      autofocus
+      spellcheck="true"
+      maxlength="1600"
+    >{`
+Today’s to-dos:
+- Update the notepad app UI.
+- Add support for real data and backend.
+- (This is demo text; replace or edit!)`}</textarea>
+  </Notepad>
 </Layout>
