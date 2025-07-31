@@ -1,0 +1,39 @@
+---
+import Notepad from '../components/Notepad.astro';
+import Layout from '../layouts/Layout.astro';
+
+/**
+ * App index page - using Notepad UI
+ */
+---
+<Layout>
+  <Notepad>
+    <textarea
+      aria-label="Type your note here"
+      rows="11"
+      style="
+        width: 100%;
+        min-height: 320px;
+        font-family: 'Special Elite', 'Courier New', Courier, monospace;
+        background: none;
+        border: none;
+        outline: none;
+        color: #444;
+        font-size: 16px;
+        line-height: 1.85;
+        resize: none;
+        z-index: 2;
+        letter-spacing: 0.03em;
+        text-shadow: 0.35px 0.25px 0 #dccfb370;
+      "
+      placeholder="Write your notes here..."
+      autofocus
+      spellcheck="true"
+      maxlength="1600"
+    >{`
+Today’s to-dos:
+- Update the notepad app UI.
+- Add support for real data and backend.
+- (This is demo text; replace or edit!)`}</textarea>
+  </Notepad>
+</Layout>

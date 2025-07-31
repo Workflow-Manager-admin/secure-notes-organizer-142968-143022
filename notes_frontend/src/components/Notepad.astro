@@ -1,0 +1,196 @@
+---
+/**
+ * Notepad.astro
+ * Component for displaying the notepad-inspired layout and style.
+ */
+const { children } = Astro.props;
+---
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+  :root {
+    --paper-bg: #f8f4e3;        /* Creamy, aged paper */
+    --paper-edge: #b19c74;      /* Browned, weathered edge/border */
+    --line-color: #b7ad97;      /* Soft gray-brown, for lines */
+    --ring-color: #181818;      /* Rich dark/metal spiral ring */
+    --notepad-width: 420px;
+    --notepad-radius: 18px;
+    --ring-height: 32px;
+    --container-padding: 24px;
+    --note-font: 'Special Elite', 'Courier New', Courier, monospace;
+    --font-color: #444;           /* Softer, muted dark gray for text */
+    --line-gap: 32px;
+    --mobile-width: 94vw;
+    --shadow-brown: 0 4px 32px 0 rgba(154,134,94,0.08);
+    --shadow-inner: inset 0 0 24px 4px var(--paper-edge);
+    --shadow-outer: 0 1.5px 0.5px 0 rgba(154,134,94,0.06);
+  }
+  .notepad-outer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    background: repeating-linear-gradient(
+      135deg,
+      #f8f4e3 0px,
+      #faf7ec 400px,
+      #ede6d4 1200px
+    );
+    padding-top: 40px;
+  }
+  .notepad-container {
+    background: var(--paper-bg);
+    border-radius: var(--notepad-radius);
+    box-shadow:
+      var(--shadow-brown),
+      var(--shadow-inner),
+      var(--shadow-outer);
+    padding: calc(var(--ring-height) + var(--container-padding)) var(--container-padding) var(--container-padding) var(--container-padding);
+    max-width: var(--notepad-width);
+    width: var(--notepad-width);
+    min-height: 380px;
+    margin: 0 auto 56px auto;
+    position: relative;
+    font-family: var(--note-font);
+    color: var(--font-color);
+    font-size: 16px;
+    line-height: 1.8;
+    overflow: visible;
+    z-index: 2;
+    border: 2.2px solid var(--paper-edge);
+
+    /* Paper texture: subtle mottled effect for realistic feel */
+    background-image:
+      linear-gradient(180deg, #ede6d4 0%, transparent 80%),
+      repeating-linear-gradient(135deg, #faeee0cc 0 8px, #0000 12px 24px),
+      url('https://www.transparenttextures.com/patterns/old-mathematics.png'); /* Fallback paper texture */
+    background-blend-mode: lighten;
+  }
+  @media (max-width: 480px) {
+    .notepad-container {
+      max-width: var(--mobile-width);
+      width: var(--mobile-width);
+      padding-left: 8vw;
+      padding-right: 8vw;
+      font-size: 15px;
+    }
+  }
+  .notepad-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--ring-height);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 20;
+  }
+  .spiral-svg {
+    width: 154px;
+    height: 32px;
+    filter: drop-shadow(0px 2.5px 2.5px #92784c44);
+  }
+  .notepad-lines {
+    position: absolute;
+    top: calc(var(--ring-height) + var(--container-padding));
+    left: var(--container-padding);
+    right: var(--container-padding);
+    bottom: var(--container-padding);
+    z-index: 1;
+    pointer-events: none;
+    width: auto;
+    height: auto;
+  }
+  .notepad-lines svg line {
+    stroke-dasharray: 2 3.5;
+    stroke: var(--line-color);
+    stroke-width: 1.35;
+  }
+  /* Custom thin brown scrollbar for main note area */
+  .notepad-container ::-webkit-scrollbar {
+    width: 6px;
+  }
+  .notepad-container ::-webkit-scrollbar-thumb {
+    background: #b7ad97;
+    border-radius: 3px;
+  }
+  .notepad-container ::-webkit-scrollbar-track {
+    background: #ede6d466;
+  }
+  textarea,
+  .editable-note-area {
+    background: none;
+    outline: none;
+    border: none;
+    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
+    min-height: 320px;
+    resize: none;
+    font-family: var(--note-font);
+    font-size: 16px;
+    color: var(--font-color);
+    line-height: 1.85;
+    z-index: 2;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    letter-spacing: 0.03em;
+    box-shadow: none;
+    background-image: none;
+    text-shadow: 0.35px 0.25px 0 #dccfb370;
+    /* Mimic subtle printing/handwriting with a hint of shadow */
+  }
+  textarea:focus,
+  .editable-note-area:focus-within {
+    background: #fcf7ea;
+    outline: 1.5px solid #d1ad7b;
+    box-shadow: 0 0 0 2.2px #ebdbb099;
+  }
+  @media (max-width: 375px) {
+    .notepad-container {
+      padding: calc(var(--ring-height) + 9vw) 5vw 5vw 5vw;
+      border-radius: 12px;
+      font-size: 13.5px;
+    }
+    .spiral-svg {
+      width: 105px; height: 21px;
+    }
+  }
+</style>
+
+<div class="notepad-outer">
+  <div class="notepad-container">
+    <div class="notepad-header">
+      <!-- Simulate spiral binding with SVG rings -->
+      <svg class="spiral-svg" viewBox="0 0 154 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g>
+          <ellipse cx="10" cy="23" rx="8.5" ry="8" stroke="var(--ring-color)" stroke-width="3"/>
+          <ellipse cx="38" cy="23" rx="8.5" ry="8" stroke="var(--ring-color)" stroke-width="3"/>
+          <ellipse cx="66" cy="23" rx="8.5" ry="8" stroke="var(--ring-color)" stroke-width="3"/>
+          <ellipse cx="94" cy="23" rx="8.5" ry="8" stroke="var(--ring-color)" stroke-width="3"/>
+          <ellipse cx="122" cy="23" rx="8.5" ry="8" stroke="var(--ring-color)" stroke-width="3"/>
+          <ellipse cx="150" cy="23" rx="3.0" ry="8" stroke="var(--ring-color)" stroke-width="3"/>
+        </g>
+        <rect y="0" width="154" height="8" fill="var(--paper-edge)" opacity="0.32"/>
+      </svg>
+    </div>
+    <!-- Lined paper effect below header using SVG or manual lines -->
+    <div class="notepad-lines">
+      <svg width="100%" height="100%" style="position:absolute;top:0;left:0;" xmlns="http://www.w3.org/2000/svg">
+        <g id="ruled-lines" style="opacity:0.62">
+          {Array.from({length: Math.floor((320 + 40) / 32)}, (_, i) =>
+            `<line x1="0" x2="100%" y1="${i*32}" y2="${i*32}" stroke="var(--line-color)" stroke-width="1.2" 
+            stroke-dasharray="2 3.5" />`).join('')}
+        </g>
+      </svg>
+    </div>
+    <div style="position:relative;z-index:2;">
+      <slot />
+    </div>
+  </div>
+</div>

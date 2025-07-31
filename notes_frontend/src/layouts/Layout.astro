@@ -1,0 +1,107 @@
+---
+import ThemeToggle from '../components/ThemeToggle.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro Basics</title>
+	</head>
+	<body>
+		<ThemeToggle />
+
+		<!-- App Logo (integrated for b/w theme at top center + responsive) -->
+		<header class="main-logo-header">
+			<a href="/" tabindex="-1" aria-label="Homepage">
+				<img
+					src="/logo.jpeg"
+					alt="Notepad App Logo"
+					class="app-logo"
+					width="60"
+					height="60"
+					decoding="async"
+					fetchpriority="high"
+					onerror="this.onerror=null;this.src='https://placehold.co/60x60?text=Logo';this.alt='App logo unavailable';"
+				/>
+			</a>
+		</header>
+
+		<slot />
+	</body>
+</html>
+
+<style>
+	:root {
+		/* Notepad-inspired themed variables */
+		--bg-color: #fcf7ed;
+		--text-color: #444;
+		--text-secondary: #6d542b;
+		--border-color: #b19c74;
+		--card-bg: #f8f4e3;
+		--card-hover-bg: #ecdfbb;
+		--shadow-color: #b19c7477;
+		--shadow-hover-color: #ddb97088;
+	}
+	body.dark-theme {
+		/* Muted/tanned for dark mode (for a cozy look) */
+		--bg-color: #271e13;
+		--text-color: #f4eed6;
+		--text-secondary: #e6ca9d;
+		--border-color: #927a43;
+		--card-bg: #27200d;
+		--card-hover-bg: #3f2f1a;
+		--shadow-color: #59472455;
+		--shadow-hover-color: #bcae8c22;
+	}
+
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		background-color: var(--bg-color);
+		color: var(--text-color);
+		transition: background-color 0.3s, color 0.3s;
+		font-family: 'Special Elite', 'Courier New', Courier, monospace, 'Helvetica Neue', Arial, sans-serif;
+		background-image: 
+			repeating-linear-gradient(120deg, #f8f4e3 0px, #f1edd9 70vw),
+			radial-gradient(ellipse 120vw 120vw at 28vw 12vh, #ede6d4 36%, transparent 100%);
+	}
+	.main-logo-header {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		padding-top: 18px;
+		padding-bottom: 8px;
+		background: none;
+	}
+	.app-logo {
+		display: block;
+		margin: 0 auto 0.25rem auto;
+		border-radius: 18px;
+		border: 2.5px solid var(--border-color);
+		background: #fff8e1;
+		box-shadow: 0 2px 14px 2px #9c84632a;
+		object-fit: contain;
+		width: 64px;
+		height: 64px;
+		max-width: 96vw;
+		filter: sepia(0.1) contrast(1.04) brightness(1.09) drop-shadow(0 0 2px #f6e7d2a5);
+		transition: filter 0.2s cubic-bezier(.68,-0.55,.27,1.55), border-color 0.33s, background 0.3s;
+	}
+	body.dark-theme .app-logo {
+		background: #39312a;
+		border-color: #927a43;
+		filter: sepia(0.10) brightness(1.11) contrast(1.11) drop-shadow(0 5px 8px #241c116a);
+		box-shadow: 0 3px 18px #332a218a;
+	}
+	@media (max-width: 440px) {
+		.main-logo-header { padding-top: 7vw; }
+		.app-logo { width: 42px; height: 42px; border-radius: 11px; }
+	}
+</style>
