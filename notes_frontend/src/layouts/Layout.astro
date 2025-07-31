@@ -19,27 +19,27 @@ import ThemeToggle from '../components/ThemeToggle.astro';
 
 <style>
 	:root {
-		/* Light theme variables */
-		--bg-color: #ffffff;
-		--text-color: #111827;
-		--text-secondary: #4b5563;
-		--border-color: rgba(0, 0, 0, 0.1);
-		--card-bg: rgba(255, 255, 255, 1);
-		--card-hover-bg: rgba(255, 255, 255, 0.55);
-		--shadow-color: rgba(0, 0, 0, 0.1);
-		--shadow-hover-color: rgba(0, 0, 0, 0.15);
+		/* Black-and-white variables */
+		--bg-color: #fff;
+		--text-color: #111;
+		--text-secondary: #444;
+		--border-color: #bbb;
+		--card-bg: #fff;
+		--card-hover-bg: #efefef;
+		--shadow-color: #bbb2;
+		--shadow-hover-color: #bbb4;
 	}
 
 	body.dark-theme {
-		/* Dark theme variables */
-		--bg-color: #111827;
-		--text-color: #f9fafb;
-		--text-secondary: #d1d5db;
-		--border-color: rgba(255, 255, 255, 0.2);
-		--card-bg: rgba(31, 41, 55, 0.9);
-		--card-hover-bg: rgba(31, 41, 55, 0.7);
-		--shadow-color: rgba(0, 0, 0, 0.3);
-		--shadow-hover-color: rgba(0, 0, 0, 0.4);
+		/* Inverted for black/white */
+		--bg-color: #111;
+		--text-color: #fff;
+		--text-secondary: #ccc;
+		--border-color: #444;
+		--card-bg: #1a1a1a;
+		--card-hover-bg: #222;
+		--shadow-color: #222b;
+		--shadow-hover-color: #444b;
 	}
 
 	html,
@@ -49,6 +49,6 @@ import ThemeToggle from '../components/ThemeToggle.astro';
 		height: 100%;
 		background-color: var(--bg-color);
 		color: var(--text-color);
-		transition: background-color 0.3s ease, color 0.3s ease;
+		transition: background-color 0.3s, color 0.3s;
 	}
 </style>

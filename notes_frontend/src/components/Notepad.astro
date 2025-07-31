@@ -10,16 +10,16 @@ const { children } = Astro.props;
   @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 
   :root {
-    --paper-bg: #f8f4e3;
-    --paper-edge: #b19c74;
-    --line-color: #b7ad97;
-    --ring-color: #181818;
+    --paper-bg: #fff;
+    --paper-edge: #bbb;   /* grayscale, subtle gray border */
+    --line-color: #bbb;   /* light gray for lines */
+    --ring-color: #111;   /* black for spiral rings */
     --notepad-width: 420px;
     --notepad-radius: 18px;
     --ring-height: 32px;
     --container-padding: 24px;
     --note-font: 'Special Elite', 'Courier New', Courier, monospace;
-    --font-color: #444;
+    --font-color: #111;
     --line-gap: 32px;
     --mobile-width: 94vw;
   }
@@ -29,17 +29,16 @@ const { children } = Astro.props;
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
-    background: repeating-linear-gradient(135deg, #efe2b5 0 2px, transparent 2px 20px), var(--paper-bg);
-    background-size: 240px 240px;
+    background: #fff;
     padding-top: 40px;
   }
   .notepad-container {
     background: var(--paper-bg);
     border-radius: var(--notepad-radius);
     box-shadow:
-      0 4px 32px 0 rgba(154,134,94,0.10),
+      0 4px 32px 0 rgba(30,30,30,0.08),
       inset 0 0 24px 4px var(--paper-edge),
-      0 1.5px 0.5px 0 rgba(177,156,116,0.045);
+      0 1.5px 0.5px 0 rgba(30,30,30,0.03);
     padding: calc(var(--ring-height) + var(--container-padding)) var(--container-padding) var(--container-padding) var(--container-padding);
     max-width: var(--notepad-width);
     width: var(--notepad-width);
@@ -52,6 +51,8 @@ const { children } = Astro.props;
     line-height: 1.8;
     overflow: visible;
     z-index: 2;
+    border: 1.5px solid var(--paper-edge);
+    /* Remove any brown/yellow tint */
   }
   @media (max-width: 480px) {
     .notepad-container {
@@ -94,7 +95,7 @@ const { children } = Astro.props;
     width: 6px;
   }
   .notepad-container ::-webkit-scrollbar-thumb {
-    background: #d5c49d;
+    background: #ccc; /* light gray thumb */
     border-radius: 3px;
   }
   .notepad-container ::-webkit-scrollbar-track {
@@ -120,13 +121,13 @@ const { children } = Astro.props;
     margin: 0;
     letter-spacing: 0.03em;
     box-shadow: none;
+    /* Remove any background color on focus, only use grayscale if needed */
   }
   textarea:focus,
   .editable-note-area:focus-within {
-    background: rgba(239, 234, 204, 0.1);
+    background: #f5f5f5;
   }
 
-  /* Responsive, mobile tweaks */
   @media (max-width: 375px) {
     .notepad-container {
       padding: calc(var(--ring-height) + 9vw) 5vw 5vw 5vw;
